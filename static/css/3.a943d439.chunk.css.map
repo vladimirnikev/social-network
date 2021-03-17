@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Login/Login.module.css"],"names":[],"mappings":"AAAA,oBACI,oBAAqB,CACrB,aAAc,CACd,WAAY,CACZ,SACJ","file":"3.a943d439.chunk.css","sourcesContent":[".error {\n    border: 1px solid red;\n    display: block;\n    padding: 3px;\n    color: red;\n}"]}

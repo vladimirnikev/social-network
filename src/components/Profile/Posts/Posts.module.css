@@ -1,0 +1,22 @@
+.postsTitle {
+    margin: 0;
+    padding: 0;
+}
+
+.addPostWrapper {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
+}
+
+.addPostWrapper textarea {
+    display: block;
+    max-width: 500px;
+}
+
+
+.addPostWrapper button {
+    display: block;
+    max-width: 100px;
+    margin-top: 10px;
+}

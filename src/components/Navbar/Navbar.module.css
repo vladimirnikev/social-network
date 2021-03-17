@@ -1,0 +1,13 @@
+.nav {
+    grid-area: n;
+    background-color: green;
+    }
+
+.nav .link{
+    color: yellow;
+    text-decoration: none;
+}
+
+.nav .activeLink {
+    color: blue;
+}

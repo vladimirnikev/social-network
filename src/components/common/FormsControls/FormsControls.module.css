@@ -1,0 +1,8 @@
+.customTextarea.error input,
+.customTextarea.error textarea  {
+    border: 2px solid red;
+}
+
+.customTextarea.error span {
+    color: red;
+}

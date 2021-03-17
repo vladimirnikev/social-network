@@ -1,0 +1,15 @@
+.paginator {
+    display: flex;
+}
+
+.paginator .items {
+    width: 24px;
+    text-align: center;
+    /* padding: 5px; */
+    border: 1px black solid;
+    cursor: pointer;
+}
+
+.selected {
+    font-weight: bold;
+  }

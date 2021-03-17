@@ -1,0 +1,10 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    border: 2px black solid;
+}
+
+.list span {
+    text-align: center;
+    padding-bottom: 3px;
+}

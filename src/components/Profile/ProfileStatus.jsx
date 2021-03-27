@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'redux';
+import Preloader from '../common/Preloader/Preloader';
 
 let ProfileStatus = (props) => {
-
     let [isToggle, setIsToggle] = useState(false)
     let [status, setLocalStatus] = useState(props.status)
 
@@ -28,14 +28,21 @@ let ProfileStatus = (props) => {
         setLocalStatus(e.currentTarget.value)
     }
 
-    return (<>
-        {
-            !isToggle
-                ? <span onClick={openStatusForm}>{props.status || 'New status'}</span>
-                : <input autoFocus value={status} onChange={changeStatus} onBlur={closeStatusForm} type="text" />
-        }
-    </>
-    )
+    if (props.isToggleStatus) {
+        return <Preloader />
+    } else {
+        return (<>
+            {
+                !isToggle
+                    ? <span onClick={!props.userId ? openStatusForm : null}>{props.status || '------'}</span>
+                    : <input autoFocus value={status} onChange={changeStatus} onBlur={closeStatusForm} type="text" />
+            }
+            {
+                props.statusUpdateError && <div>Oops! Status wasn't update, something went wrong!</div>
+            }
+        </>
+        )
+    }
 }
 
 compose(

@@ -8,7 +8,7 @@ import { Input } from '../common/FormsControls/FormsControls'
 import s from './Login.module.css'
 
 let LoginForm = (props) => {
-
+    debugger
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -23,9 +23,14 @@ let LoginForm = (props) => {
 
             <div>
                 <label htmlFor='agree'> I agree with rules</label>
-                <Field name='remeberMe' type='checkbox' component={Input} />
+                <Field name='rememberMe' type='checkbox' component={Input} />
             </div>
-            <div className={s.error}>{props.error}</div>
+            {props.captcha && <div>
+                <img alt='captcha' src={props.captcha} />
+                <Field name='captcha' type='text' component='input' />
+            </div>}
+
+            {props.error && <div className={s.error}>{props.error}</div>}
             <button type='submit' disabled={props.submitting}>Submit</button>
         </form>
     )
@@ -35,7 +40,8 @@ let LoginForm = (props) => {
 
 let mapStateToProps = (state) => {
     return {
-        isLogin: state.auth.isLogin
+        isLogin: state.auth.isLogin,
+        captcha: state.auth.captchaUrl
     }
 }
 
@@ -46,15 +52,15 @@ LoginForm = reduxForm({
 
 const Login = (props) => {
 
-    let onSubmit = ({ email, password, remeberMe, captcha }) => {
-        props.loginUser(email, password, remeberMe, captcha)
+    let onSubmit = ({ email, password, rememberMe, captcha }) => {
+        props.loginUser(email, password, rememberMe, captcha)
     }
 
     if (props.isLogin) return <Redirect to={'/profile'} />
 
     return <>
         <h1>Login, please</h1>
-        <LoginForm onSubmit={onSubmit} />
+        <LoginForm captcha={props.captcha} onSubmit={onSubmit} />
     </>
 }
 

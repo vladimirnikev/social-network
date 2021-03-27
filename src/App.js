@@ -11,7 +11,7 @@ import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
 // import Login from './components/Login/Login'
 import { connect } from 'react-redux';
-import { initializeApp } from './redux/appReducer'
+import { initializeApp, showError } from './redux/appReducer'
 import Preloader from './components/common/Preloader/Preloader';
 
 const News = React.lazy(() => import('./components/News/News'));
@@ -20,10 +20,18 @@ const Login = React.lazy(() => import('./components/Login/Login'));
 
 class App extends React.Component {
 
+  catchAllPromisesWithError = (event) => {
+    this.props.showError(event.reason.message)
+    setTimeout(() => this.props.showError(null), 2000)
+  }
+
   componentDidMount() {
-
+    window.addEventListener('unhandledrejection', this.catchAllPromisesWithError)
     this.props.initializeApp()
+  }
 
+  componentWillUnmount() {
+    window.removeEventListener('unhandledrejection', this.catchAllPromisesWithError)
   }
 
   render() {
@@ -35,16 +43,19 @@ class App extends React.Component {
       <div className='app-wrapper'>
         <HeaderContainer />
         <NavbarContainer />
-        <div className='app-wrapper-content'>
-          <Route exact path='/' render={() => <ProfileContainer />} />
-          <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-          <Route path='/messages' render={() => <MessagesContainer />} />
-          <Route path='/users' render={() => <UsersContainer />} />
-          <Route path='/news' render={() => <Suspense fallback={<Preloader />}><News /></Suspense>} />
-          <Route path='/music' render={() => <Music />} />
-          <Route path='/settings' render={() => <Settings />} />
-          <Route path='/login' render={() => <Suspense fallback={<Preloader />}><Login /></Suspense>} />
-        </div>
+        {!this.props.globalPromiseError
+          ? <div className='app-wrapper-content'>
+            <Route exact path='/' render={() => <ProfileContainer />} />
+            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+            <Route path='/messages' render={() => <MessagesContainer />} />
+            <Route path='/users' render={() => <UsersContainer />} />
+            <Route path='/news' render={() => <Suspense fallback={<Preloader />}><News /></Suspense>} />
+            <Route path='/music' render={() => <Music />} />
+            <Route path='/settings' render={() => <Settings />} />
+            <Route path='/login' render={() => <Suspense fallback={<Preloader />}><Login /></Suspense>} />
+          </div>
+          : <div>{this.props.globalPromiseError}</div>
+        }
       </div>
     </BrowserRouter >
   }
@@ -55,9 +66,10 @@ class App extends React.Component {
 
 let mapStateToProps = (state) => {
   return {
-    isInitialized: state.app.initialized
+    isInitialized: state.app.initialized,
+    globalPromiseError: state.app.globalPromiseError
   }
 }
 
 
-export default connect(mapStateToProps, { initializeApp })(App);
+export default connect(mapStateToProps, { initializeApp, showError })(App);

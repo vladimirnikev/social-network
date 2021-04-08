@@ -1,0 +1,1 @@
+{"version":3,"sources":["components/News/News.jsx"],"names":["News"],"mappings":"8HAQeA,UARF,WACT,OACI","file":"static/js/4.06f79a16.chunk.js","sourcesContent":["const News = () => {\n    return (\n        <>\n            News\n        </>\n    )\n}\n\nexport default News;"],"sourceRoot":""}

@@ -1,11 +1,14 @@
-.postsTitle {
+/* .postsTitle {
     margin: 0;
     padding: 0;
+} */
+.postsRoot {
+    margin-top: 30px;
 }
-
 .addPostWrapper {
     display: flex;
     flex-direction: column;
+    margin-top: 20px;
     padding-bottom: 20px;
 }
 
@@ -14,9 +17,12 @@
     max-width: 500px;
 }
 
-
 .addPostWrapper button {
-    display: block;
-    max-width: 100px;
+    /* display: block; */
+    /* max-width: 100px; */
     margin-top: 10px;
+}
+
+.postsWrapper {
+    margin-top: 30px;
 }

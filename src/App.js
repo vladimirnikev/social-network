@@ -20,6 +20,7 @@ const Login = React.lazy(() => import('./components/Login/Login'));
 
 class App extends React.Component {
 
+
   catchAllPromisesWithError = (event) => {
     this.props.showError(event.reason.message)
     setTimeout(() => this.props.showError(null), 2000)
@@ -41,10 +42,10 @@ class App extends React.Component {
 
     return <BrowserRouter>
       <div className='app-wrapper'>
-        <HeaderContainer />
+        <HeaderContainer className='app-header' />
         <NavbarContainer />
         {!this.props.globalPromiseError
-          ? <div className='app-wrapper-content'>
+          ? <main className='app-wrapper-content'>
             <Route exact path='/' render={() => <ProfileContainer />} />
             <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
             <Route path='/messages' render={() => <MessagesContainer />} />
@@ -53,7 +54,7 @@ class App extends React.Component {
             <Route path='/music' render={() => <Music />} />
             <Route path='/settings' render={() => <Settings />} />
             <Route path='/login' render={() => <Suspense fallback={<Preloader />}><Login /></Suspense>} />
-          </div>
+          </main>
           : <div>{this.props.globalPromiseError}</div>
         }
       </div>

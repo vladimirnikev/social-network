@@ -1,6 +1,6 @@
 .item {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .item:not(:last-of-type) {
@@ -12,15 +12,18 @@
     height: 70px;
     border-radius: 100%;
     object-fit: cover;
-    padding-right: 10px;
 }
 
 .textWrapper {
     display: flex;
     flex-direction: column;
+    margin-left: 10px;
 }
 
-.button {
-    margin-top: 10px;
-    margin-left: 120px;
+.buttonWrapper {
+    margin-left: -12px;
+}
+
+.buttonText {
+    margin-left: 3px;
 }

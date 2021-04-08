@@ -97,7 +97,7 @@ export const sendUserInfo = (obj) =>
             // dispatch(stopSubmit('profile-edit-form', { _error: data.messages[0] }))
         }
 
-        const promiseError = getState().app.globalPromiseError
+        // const promiseError = getState().app.globalPromiseError
         dispatch(setToggle(false))
     }
 

@@ -1,8 +1,51 @@
 .infoBlock {
     padding-bottom: 20px;
+    display: flex;
 }
+.imageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imageWrapper div:last-child {
+    margin-top: 10px;
+}
+
+.mainContentWrapper {
+    margin-left: 40px;
+}
+
+.contentInfo {
+    margin-top: 30px;
+}
+
+.contentInfo button {
+    margin-top: 10px;
+}
+
+
 
 .infoBlock p {
     margin: 0;
     padding: 0;
 }
+
+.statusInput {
+    display: none;
+}
+
+.textareaWrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+}
+
+.textareaTitle {
+    padding-bottom: 0px;
+}
+
+.formButton {
+    margin-top: 15px;
+}
+

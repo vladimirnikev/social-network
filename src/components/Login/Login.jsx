@@ -1,29 +1,26 @@
+import { Button, Typography } from '@material-ui/core'
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { loginUser } from '../../redux/authReducer'
 import { email, required } from '../../util/validators/validators'
-import { Input } from '../common/FormsControls/FormsControls'
+import { InputLoginCheckbox, InputEmail, InputPassword } from '../common/FormsControls/FormsControls'
 import s from './Login.module.css'
 
 let LoginForm = (props) => {
-    debugger
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form className={s.form} onSubmit={props.handleSubmit}>
             <div>
-                <label htmlFor='email'>Login:</label>
-                <Field placeholder='Email' name='email' type='text' validate={[required, email]} component={Input} />
+                <Field name='email' validate={[required, email]} component={InputEmail} />
             </div>
 
-            <div>
-                <label htmlFor='password'>Password:</label>
-                <Field name='password' type='password' validate={[required]} component={Input} />
+            <div className={s.inputWrapper}>
+                <Field name='password' validate={[required]} component={InputPassword} />
             </div>
 
-            <div>
-                <label htmlFor='agree'> I agree with rules</label>
-                <Field name='rememberMe' type='checkbox' component={Input} />
+            <div className={s.inputWrapper}>
+                <Field name='rememberMe' type='checkbox' component={InputLoginCheckbox} />
             </div>
             {props.captcha && <div>
                 <img alt='captcha' src={props.captcha} />
@@ -31,7 +28,8 @@ let LoginForm = (props) => {
             </div>}
 
             {props.error && <div className={s.error}>{props.error}</div>}
-            <button type='submit' disabled={props.submitting}>Submit</button>
+            {/* <button type='submit' disabled={props.submitting}>Submit</button> */}
+            <Button type='submit' variant="contained" color="primary">Login</Button>
         </form>
     )
 }
@@ -59,7 +57,7 @@ const Login = (props) => {
     if (props.isLogin) return <Redirect to={'/profile'} />
 
     return <>
-        <h1>Login, please</h1>
+        <Typography variant='h3'>Login, please</Typography>
         <LoginForm captcha={props.captcha} onSubmit={onSubmit} />
     </>
 }

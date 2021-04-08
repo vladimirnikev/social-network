@@ -4,10 +4,14 @@ import s from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
-    debugger
+    // debugger
+    if (!props.userData) {
+        return <Preloader />
+    }
+
     return (
 
-        <main>
+        <>
             {!props.isToggle
                 ? <ProfileInfo errorMessage={props.errorMessage} sendUserInfo={props.sendUserInfo}
                     setStatus={props.setStatus} getStatus={props.getStatus} status={props.status}
@@ -16,7 +20,7 @@ const Profile = (props) => {
                     isToggleStatus={props.isToggleStatus} />
                 : <Preloader />}
             <PostsContainer />
-        </main>
+        </>
     );
 }
 

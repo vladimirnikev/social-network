@@ -1,3 +1,4 @@
+import { Input, Typography } from '@material-ui/core';
 import React, { useEffect, useState } from 'react'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'redux';
@@ -34,8 +35,8 @@ let ProfileStatus = (props) => {
         return (<>
             {
                 !isToggle
-                    ? <span onClick={!props.userId ? openStatusForm : null}>{props.status || '------'}</span>
-                    : <input autoFocus value={status} onChange={changeStatus} onBlur={closeStatusForm} type="text" />
+                    ? <Typography variant='body2' onClick={!props.userId ? openStatusForm : null}>{props.status || '------'}</Typography>
+                    : <Input autoFocus value={status} onChange={changeStatus} onBlur={closeStatusForm} type="text" />
             }
             {
                 props.statusUpdateError && <div>Oops! Status wasn't update, something went wrong!</div>

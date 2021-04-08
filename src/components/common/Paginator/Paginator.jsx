@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import s from './../../Users/Users.module.css'
 import s from './Paginator.module.css'
 
 let Paginator = ({ itemsCount, pageSize, currentPage, onChanged, portionSize = 5 }) => {

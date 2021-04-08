@@ -5,11 +5,15 @@ import style from './../../Login/Login.module.css'
 import userImg from '../../../assets/img/user.png'
 import { useState } from 'react'
 import { Field, FormSection, reduxForm } from 'redux-form'
+import { InputProfileInfoCheckbox, Textarea } from '../../common/FormsControls/FormsControls'
+import { Button, TextField, Typography } from '@material-ui/core'
+import { Input } from './../../common/FormsControls/FormsControls'
+import { link, required } from '../../../util/validators/validators'
 
 const ProfileInfo = (props) => {
-    if (!props.userData) {
-        return <Preloader />
-    }
+    // if (!props.userData) {
+    //     return <Preloader />
+    // }
 
     let sendImage = (e) => {
         props.refreshAvatar(e.target.files[0])
@@ -17,12 +21,36 @@ const ProfileInfo = (props) => {
 
     return (
         <div className={s.infoBlock}>
-            <ProfileStatus setStatus={props.setStatus} getStatus={props.getStatus}
-                status={props.status} mainId={props.mainId} userId={props.userId}
-                statusUpdateError={props.statusUpdateError} isToggleStatus={props.isToggleStatus} />
-            {<img alt='avatar' src={props.userData.photos.large !== null ? props.userData.photos.large : userImg} />}
-            {!props.userId ? <input onChange={sendImage} type='file' /> : null}
-            <ProfileListInfo {...props} />
+
+            <div className={s.imageWrapper}>
+                {<img alt='avatar' src={props.userData.photos.large !== null ? props.userData.photos.large : userImg} />}
+                {!props.userId
+                    ? <div><input
+                        accept="image/*"
+                        className={s.statusInput}
+                        id="contained-button-file"
+                        multiple
+                        type="file"
+                        onChange={sendImage}
+                    />
+                        <label htmlFor="contained-button-file">
+                            <Button variant="contained" color="primary" component="span">
+                                Change Photo
+                            </Button>
+                        </label></div>
+                    : null}
+            </div>
+            <div className={s.mainContentWrapper}>
+                <Typography variant='h6'>{props.userData.fullName}</Typography>
+
+                <ProfileStatus setStatus={props.setStatus} getStatus={props.getStatus}
+                    status={props.status} mainId={props.mainId} userId={props.userId}
+                    statusUpdateError={props.statusUpdateError} isToggleStatus={props.isToggleStatus} />
+
+                <ProfileListInfo {...props} />
+            </div>
+
+
         </div>
     )
 }
@@ -37,101 +65,79 @@ const ProfileListInfo = (props) => {
 
     let onSubmit = (obj) => {
         props.sendUserInfo(obj)
-        // console.log(obj)
-        // setEditMode(false)
     }
 
-    return <div>
-
-        {!props.userId && !editMode ? <button onClick={openEditForm}>Edit profile info</button> : null}
-
-
+    return <div className={s.contentInfo}>
         {!editMode
             ? <div>
-                <p>{props.userData.fullName}</p>
-                <p>{props.userData.aboutMe}</p>
+                <Typography variant='body1'><b>About me:</b> {props.userData.aboutMe}</Typography>
                 <div>
-                    <p>Contacts</p>
-                    <ul>
-                        {/* Components{Objectтprops.userData.contacts} */}
-                        <li><span>Facebook: </span>{props.userData.contacts.facebook ? props.userData.contacts.facebook : '-'}</li>
-                        <li><span>Website: </span>{props.userData.contacts.website ? props.userData.contacts.website : '-'}</li>
-                        <li><span>VK: </span>{props.userData.contacts.vk ? props.userData.contacts.vk : '-'}</li>
-                        <li><span>Twitter: </span>{props.userData.contacts.twitter ? props.userData.contacts.twitter : '-'}</li>
-                        <li><span>Instagram: </span>{props.userData.contacts.instagram ? props.userData.contacts.instagram : '-'}</li>
-                        <li><span>Youtube: </span>{props.userData.contacts.youtube ? props.userData.contacts.youtube : '-'}</li>
-                        <li><span>GitHub: </span>{props.userData.contacts.github ? props.userData.contacts.github : '-'}</li>
-                        <li><span>Link: </span>{props.userData.contacts.mainLink ? props.userData.contacts.mainLink : '-'}</li>
-                    </ul>
+                    <Typography variant='body1'><b>Facebook:</b> {props.userData.contacts.facebook ? props.userData.contacts.facebook : '-'}</Typography>
+                    <Typography variant='body1'><b>Website:</b> {props.userData.contacts.website ? props.userData.contacts.website : '-'}</Typography>
+                    <Typography variant='body1'><b>VK:</b> {props.userData.contacts.vk ? props.userData.contacts.vk : '-'}</Typography>
+                    <Typography variant='body1'><b>Twitter:</b> {props.userData.contacts.twitter ? props.userData.contacts.twitter : '-'}</Typography>
+                    <Typography variant='body1'><b>Instagram:</b> {props.userData.contacts.instagram ? props.userData.contacts.instagram : '-'}</Typography>
+                    <Typography variant='body1'><b>Youtube:</b> {props.userData.contacts.youtube ? props.userData.contacts.youtube : '-'}</Typography>
+                    <Typography variant='body1'><b>GitHub:</b> {props.userData.contacts.github ? props.userData.contacts.github : '-'}</Typography>
+                    <Typography variant='body1'><b>Link:</b> {props.userData.contacts.mainLink ? props.userData.contacts.mainLink : '-'}</Typography>
                 </div>
-                <p>{props.userData.lookingForAJob ? 'Ищу работу' : 'Работаю'}</p>
-                <p>{props.userData.lookingForAJobDescription}</p>
+                <Typography variant='body1'><b>Open to work:</b> {props.userData.lookingForAJob ? "Yes" : 'No'}</Typography>
+                <Typography variant='body1'><b>About my work expirience:</b> {props.userData.lookingForAJobDescription}</Typography>
                 {props.errorMessage && <div className={style.error}>{props.errorMessage}</div>}
             </div>
             : <ProfileEditForm errorMessage={props.errorMessage} initialValues={props.userData} onSubmit={onSubmit} />
-
         }
+        {!props.userId && !editMode ? <Button variant='outlined' color='primary' onClick={openEditForm}>Edit profile info</Button> : null}
     </div>
 }
 
 let ProfileEditForm = (props) => {
-    debugger
+
     return <form onSubmit={props.handleSubmit}>
 
         <div>
-            <label htmlFor='fullName'>Full Name:</label>
-            <Field name='fullName' type='text' component='input' />
+            <Field name='fullName' label='Full Name' validate={[required]} component={Input} />
         </div>
         <div>
-            <label htmlFor='lookingForAJob'>Looking for a job?</label>
-            <Field name='lookingForAJob' type='checkbox' component='input' />
+            <Field name='lookingForAJob' type='checkbox' label='Looking for a job?' component={InputProfileInfoCheckbox} />
         </div>
-        <div>
-            <label htmlFor='lookingForAJobDescription'>About my work expirience: </label>
-            <Field name='lookingForAJobDescription' type='text' component='textarea' />
+        <div className={s.textareaWrapper}>
+            <label className={s.textareaTitle} htmlFor='lookingForAJobDescription'>About my work expirience: </label>
+            <Field name='lookingForAJobDescription' type='text' component={Textarea} />
         </div>
-        <div>
-            <label htmlFor='aboutMe'>About me:</label>
-            <Field name='aboutMe' type='text' component='textarea' />
+        <div className={s.textareaWrapper}>
+            <label className={s.textareaTitle} htmlFor='aboutMe'>About me:</label>
+            <Field name='aboutMe' type='text' validate={[required]} component={Textarea} />
         </div>
 
         <FormSection name='contacts'>
             <div>
-                <label htmlFor='facebook'>Facebook:</label>
-                <Field name='facebook' type='text' component='input' />
+                <Field name='facebook' label='Facebook' validate={[link]} component={Input} />
             </div>
             <div>
-                <label htmlFor='website'>Website:</label>
-                <Field name='website' type='text' component='input' />
+                <Field name='website' label='Website' validate={[link]} component={Input} />
             </div>
             <div>
-                <label htmlFor='vk'>VK:</label>
-                <Field name='vk' type='text' component='input' />
+                <Field name='vk' label='VK' validate={[link]} component={Input} />
             </div>
             <div>
-                <label htmlFor='twitter'>Twitter:</label>
-                <Field name='twitter' type='text' component='input' />
+                <Field name='twitter' label='Twitter' validate={[link]} component={Input} />
             </div>
             <div>
-                <label htmlFor='instagram'>Instagram:</label>
-                <Field name='instagram' type='text' component='input' />
+                <Field name='instagram' label='Instagram' validate={[link]} component={Input} />
             </div>
             <div>
-                <label htmlFor='youtube'>Youtube:</label>
-                <Field name='youtube' type='text' component='input' />
+                <Field name='youtube' label='Youtube' validate={[link]} component={Input} />
             </div>
             <div>
-                <label htmlFor='github'>GitHub:</label>
-                <Field name='github' type='text' component='input' />
+                <Field name='github' label='GitHub' validate={[link]} component={Input} />
             </div>
             <div>
-                <label htmlFor='mainLink'>Link:</label>
-                <Field name='mainLink' type='text' component='input' />
+                <Field name='mainLink' label='Link' validate={[link]} component={Input} />
             </div>
         </FormSection>
         {props.errorMessage && <div className={style.error}>{props.errorMessage}</div>}
-
-        <button type='submit' disabled={props.submitting}>Submit</button>
+        <Button className={s.formButton} variant='contained' color='primary' type='submit'>Submit</Button>
     </form>
 
 }

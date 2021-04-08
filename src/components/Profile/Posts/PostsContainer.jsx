@@ -12,6 +12,7 @@ class PostsContainer extends React.Component {
 let mapStateToProps = (state) => {
     return {
         posts: state.profilePage.posts,
+        userData: state.profilePage.userData
     }
 }
 

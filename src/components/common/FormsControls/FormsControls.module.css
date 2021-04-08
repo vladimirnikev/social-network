@@ -1,3 +1,13 @@
+.customTextarea {
+    display: flex;
+    flex-direction: column;
+}
+
+.customTextarea textarea {
+    min-width: 300px;
+    min-height: 100px;
+}
+
 .customTextarea.error input,
 .customTextarea.error textarea  {
     border: 2px solid red;

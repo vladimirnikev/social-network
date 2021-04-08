@@ -1,17 +1,29 @@
+import { IconButton, Typography } from '@material-ui/core';
 import React from 'react'
 import s from './Post.module.css'
+import userImg from './../../../../assets/img/user.png'
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 
-const Post = ({ text, likeCounter }) => {
+const Post = ({ text, likeCounter, photo, ...props }) => {
 
     return (
+
+        // СДЕЛАТЬ КАРТОЧКУ ПОСТА
+
         <div className={s.item}>
-            <img src="https://www.belta.by/images/storage/news/with_archive/2020/000029_1579851115_377062_big.jpg" alt="avatar" />
+            <img src={props.userData.photos.small !== null ? props.userData.photos.small : userImg} alt="avatar" />
             <div className={s.textWrapper}>
-                <span>{text}</span>
-                <span className={s.button}>Like {likeCounter}</span>
+                <Typography variant='subtitle1' color='primary'>{props.userData.fullName}</Typography>
+                <Typography variant='body1'>{text}</Typography>
+                <div className={s.buttonWrapper}>
+                    <IconButton color="primary">
+                        <FavoriteIcon fontSize='small' />
+                        <Typography className={s.buttonText} variant='caption'>{likeCounter}</Typography>
+                    </IconButton>
+                </div>
             </div>
-        </div>
+        </div >
     )
 }
 

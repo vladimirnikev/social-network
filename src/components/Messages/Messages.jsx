@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 import { Field, reduxForm } from 'redux-form'
 import { required } from '../../util/validators/validators'
 import { Textarea } from '../common/FormsControls/FormsControls'

@@ -1,13 +1,34 @@
-.card:not(:first-of-type) {
-  margin-top: 30px; 
+.usersContent {
+  display: flex;
+  flex-direction: column;
 }
 
-.wrapper {
+.pagination {
+  margin-top: 40px;
+  align-self: center;
+}
+
+.itemsList {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.card {
+  margin-top: 30px;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.cardWrapper {
     display: flex;
     flex-direction: column;
+
 }
 
 .card img {
-    max-width: 150px;
-    max-height: 150px;
+    width: 150px;
+    height: 150px;
 }

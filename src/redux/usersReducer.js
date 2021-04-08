@@ -9,9 +9,9 @@ const SET_USERS_COUNT = 'SET_USERS_COUNT'
 const SET_FETCHING = 'SET_FETCHING'
 const TOGGLE_BUTTON_CLICK = 'TOGGLE_BUTTON_CLICK'
 
-export const showMoreUsers = () => ({
-    type: SHOW_MORE_USERS
-})
+// export const showMoreUsers = () => ({
+//     type: SHOW_MORE_USERS
+// })
 
 export const followUserSuccess = (userId) => ({
     type: FOLLOW_USER, userId

@@ -1,29 +1,19 @@
 .app-wrapper {
-  display: grid;
-  max-width: 1200px;
+  display: flex;
   margin: 0 auto;
 
   grid-template-areas:
-    "h h"
-    "n m";
+    "h h h"
+    "n m m";
 
-  grid-template-rows: 90px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 5px; 
+  grid-template-rows: 64px 1fr;
+  grid-template-columns: 240px 1fr;
 }
+
 
 .app-wrapper-content {
+  padding: 90px 40px 40px 40px;
   grid-area: m;
-  background-color: yellow;
-  padding: 20px;
-}
-
-
-
-
-.nav__list{
-
-}
-.nav__link{
-
+  background-color: #eceff1;
+  flex-grow: 2;
 }

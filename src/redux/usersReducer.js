@@ -1,6 +1,5 @@
 import { usersAPI } from './../api/api'
 
-const SHOW_MORE_USERS = 'SHOW-MORE-USERS'
 const FOLLOW_USER = 'FOLLOW_USER'
 const UNFOLLOW_USER = 'UNFOLLOW_USER'
 const SET_USERS = 'SET_USERS'
@@ -9,9 +8,6 @@ const SET_USERS_COUNT = 'SET_USERS_COUNT'
 const SET_FETCHING = 'SET_FETCHING'
 const TOGGLE_BUTTON_CLICK = 'TOGGLE_BUTTON_CLICK'
 
-// export const showMoreUsers = () => ({
-//     type: SHOW_MORE_USERS
-// })
 
 export const followUserSuccess = (userId) => ({
     type: FOLLOW_USER, userId

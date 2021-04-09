@@ -1,4 +1,3 @@
-import Preloader from '../../common/Preloader/Preloader'
 import ProfileStatus from '../ProfileStatus'
 import s from './ProfileInfo.module.css'
 import style from './../../Login/Login.module.css'
@@ -6,14 +5,11 @@ import userImg from '../../../assets/img/user.png'
 import { useState } from 'react'
 import { Field, FormSection, reduxForm } from 'redux-form'
 import { InputProfileInfoCheckbox, Textarea } from '../../common/FormsControls/FormsControls'
-import { Button, TextField, Typography } from '@material-ui/core'
+import { Button, Typography } from '@material-ui/core'
 import { Input } from './../../common/FormsControls/FormsControls'
 import { link, required } from '../../../util/validators/validators'
 
 const ProfileInfo = (props) => {
-    // if (!props.userData) {
-    //     return <Preloader />
-    // }
 
     let sendImage = (e) => {
         props.refreshAvatar(e.target.files[0])

@@ -13,15 +13,6 @@ import s from './FormsControls.module.css'
 
 // export const Input = FormsControl('input')
 
-
-export const Textarea = ({ input, meta, ...props }) => {
-
-    return <div className={s.customTextarea + ' ' + (meta.error && meta.touched ? s.error : '')}>
-        <textarea {...input} {...props} />
-        {meta.error && meta.touched && <Typography color='error' variant='caption'>{meta.error}</Typography>}
-    </div>
-}
-
 // export const Input = ({ input, meta, ...props }) => {
 //     // return <div className={s.customTextarea + ' ' + (meta.error && meta.touched ? s.error : '')}>
 //     //     <input {...input} {...props} />
@@ -31,6 +22,14 @@ export const Textarea = ({ input, meta, ...props }) => {
 //         ? <TextField {...input} error label="Error" type="password" helperText="Incorrect entry." />
 //         : <TextField {...input} label="Password" type="password" />
 // }
+
+export const Textarea = ({ input, meta, ...props }) => {
+
+    return <div className={s.customTextarea + ' ' + (meta.error && meta.touched ? s.error : '')}>
+        <textarea {...input} {...props} />
+        {meta.error && meta.touched && <Typography color='error' variant='caption'>{meta.error}</Typography>}
+    </div>
+}
 
 export const InputPassword = ({ input, meta, ...props }) => {
     return meta.error && meta.touched

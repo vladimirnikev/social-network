@@ -4,12 +4,10 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import MessagesContainer from './components/Messages/MessagesContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer'
 import ProfileContainer from './components/Profile/ProfileContainer';
-import { Route, BrowserRouter } from 'react-router-dom'
-// import News from './components/News/News';
+import { Route, HashRouter } from 'react-router-dom'
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
-// import Login from './components/Login/Login'
 import { connect } from 'react-redux';
 import { initializeApp, showError } from './redux/appReducer'
 import Preloader from './components/common/Preloader/Preloader';
@@ -40,7 +38,7 @@ class App extends React.Component {
       return <Preloader />
     }
 
-    return <BrowserRouter>
+    return <HashRouter>
       <div className='app-wrapper'>
         <HeaderContainer className='app-header' />
         <NavbarContainer />
@@ -58,7 +56,7 @@ class App extends React.Component {
           : <div>{this.props.globalPromiseError}</div>
         }
       </div>
-    </BrowserRouter >
+    </HashRouter >
   }
 }
 

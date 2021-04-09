@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Users from './Users'
 
 import { followUser, unfollowUser, setPage, getUsers } from '../../redux/usersReducer'
-import Preloader from '../common/Preloader/Preloader'
 import withRedirect from '../hoc/withRedirect'
 import { compose } from 'redux'
 
@@ -29,7 +28,6 @@ class UsersContainer extends React.Component {
 
     render() {
         return <>
-            {/* {this.props.isFetching ? <Preloader /> : */}
             <Users
                 usersCount={this.props.usersCount}
                 pageSize={this.props.pageSize}
@@ -41,7 +39,6 @@ class UsersContainer extends React.Component {
                 followingInProgress={this.props.followingInProgress}
                 isFetching={this.props.isFetching}
             />
-            {/* } */}
         </>
     }
 }

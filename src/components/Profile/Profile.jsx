@@ -1,10 +1,8 @@
 import Preloader from '../common/Preloader/Preloader';
 import PostsContainer from './Posts/PostsContainer'
-import s from './Profile.module.css'
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 
 const Profile = (props) => {
-    // debugger
     if (!props.userData) {
         return <Preloader />
     }

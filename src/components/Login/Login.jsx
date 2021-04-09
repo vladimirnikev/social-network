@@ -59,6 +59,12 @@ const Login = (props) => {
     return <>
         <Typography variant='h3'>Login, please</Typography>
         <LoginForm captcha={props.captcha} onSubmit={onSubmit} />
+
+        <Typography className={s.captionLogin} cariant='caption'>
+            Введите данные тестового аккаунта:
+            <br /><b>Email:</b> free@samuraijs.com
+            <br /><b>Password:</b> free
+        </Typography>
     </>
 }
 

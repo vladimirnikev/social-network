@@ -1,8 +1,5 @@
-import s from './Navbar.module.css'
 import { NavLink } from 'react-router-dom'
-import FriendsList from '../FriendsList/FriendsList'
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, makeStyles, Toolbar } from '@material-ui/core';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import PersonIcon from '@material-ui/icons/Person';
 import GroupIcon from '@material-ui/icons/Group';
 import ChatIcon from '@material-ui/icons/Chat';

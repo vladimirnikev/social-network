@@ -20,12 +20,6 @@ const User = ({ user, followingInProgress, unfollowUser, followUser }) => {
                     : <Button variant='outlined' color='primary' disabled={followingInProgress.some(el => el === user.id)} onClick={() => { followUser(user.id) }}>Follow</Button>
                 }
             </div>
-            {/* <div className={s.cardWrapper}>
-
-                <span>{'u.status'}</span>
-                <span>{'u.place.country'}</span>
-                <span>{'u.place.city'}</span>
-            </div> */}
         </div>)
 }
 

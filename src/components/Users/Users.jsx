@@ -1,7 +1,6 @@
 import React from 'react'
 import s from './Users.module.css'
 import User from './User';
-import Paginator from '../common/Paginator/Paginator';
 import Preloader from '../common/Preloader/Preloader';
 import Pagination from '@material-ui/lab/Pagination';
 import { Typography } from '@material-ui/core';

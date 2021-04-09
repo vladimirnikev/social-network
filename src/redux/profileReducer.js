@@ -1,4 +1,3 @@
-import { stopSubmit } from 'redux-form'
 import { profileAPI } from './../api/api'
 
 const CREATE_POST = 'CREATE-POST'
@@ -120,10 +119,8 @@ export const setStatus = (status) =>
 let initialState = {
     posts: [
         { id: 0, text: 'Отличный выдался денек!', likeCounter: '138' },
-        { id: 1, text: 'Победа', likeCounter: '83' },
-        { id: 2, text: 'Кек', likeCounter: '12' },
-        { id: 3, text: 'Лол', likeCounter: '7' },
-        { id: 4, text: 'React - пушка', likeCounter: '999' }
+        { id: 1, text: 'Очередная победа сегодня!', likeCounter: '83' },
+        { id: 2, text: 'React - отличный инструмент', likeCounter: '999' }
     ],
     userData: null,
     userStatus: '',

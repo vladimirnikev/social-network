@@ -11,12 +11,12 @@ export const updateMessageTextActionCreator = (text) => ({
 
 let initialState = {
     dialogs: [
-        { id: 1, user: 'Vladimir Nikev' },
-        { id: 2, user: 'Anna Zakharchuk' },
-        { id: 3, user: 'Ivan Kiskin' },
-        { id: 4, user: 'Vladislav Gatsenko' },
-        { id: 5, user: 'Yuriy Ovcharenko' },
-        { id: 6, user: 'Rustam Abduloev' }
+        { id: 1, user: 'Vladimir' },
+        { id: 2, user: 'Anna' },
+        { id: 3, user: 'Ivan' },
+        { id: 4, user: 'Vladislav' },
+        { id: 5, user: 'Yuriy' },
+        { id: 6, user: 'Rustam' }
     ],
     messages: [
         { id: 1, message: "Hello" },
